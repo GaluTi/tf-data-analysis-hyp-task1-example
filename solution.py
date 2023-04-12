@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
+import scipy.stats as st
 
-
-chat_id = 123456 # Ваш chat ID, не меняйте название переменной
+chat_id = 640884635 # Ваш chat ID, не меняйте название переменной
 
 def solution(x_success: int, 
              x_cnt: int, 
@@ -11,4 +11,9 @@ def solution(x_success: int,
     # Измените код этой функции
     # Это будет вашим решением
     # Не меняйте название функции и её аргументы
-    return ... # Ваш ответ, True или False
+    x = x_success / x_cnt
+    y = y_success / y_cnt
+    std_diff = np.sqrt((x * (1 - x) / x_cnt) + (y * (1 - y) / y_cnt))
+    t = (y - x) / std_diff
+    c = st.norm.ppf(1 - 0.07)
+    return t > c
