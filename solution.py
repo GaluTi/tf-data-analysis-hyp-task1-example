@@ -14,6 +14,6 @@ def solution(x_success: int,
     x = x_success / x_cnt
     y = y_success / y_cnt
     std_diff = np.sqrt((x * (1 - x) / x_cnt) + (y * (1 - y) / y_cnt))
-    t = (y - x) / std_diff
-    c = st.norm.ppf(1 - 0.07)
+    t = np.abs(y - x) / std_diff
+    c = st.norm.ppf(1 - 0.07/2)
     return t > c
